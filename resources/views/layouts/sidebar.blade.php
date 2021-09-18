@@ -3,10 +3,8 @@
 
        <!-- Sidebar - Brand -->
        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-           <div class="sidebar-brand-icon rotate-n-15">
-               <i class="fas fa-laugh-wink"></i>
-           </div>
-           <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+
+           <div class="sidebar-brand-text mt-3 mb-3  ">{{ $admin->school_name }}</div>
        </a>
 
        <!-- Divider -->
@@ -60,6 +58,27 @@
                </div>
            </div>
        </li>
+
+       <li class="nav-item">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+               aria-controls="collapseUtilities">
+               <i class="fas fa-fw fa-user-graduate"></i>
+               <span>Utilities</span>
+           </a>
+           <div id="collapse3" class="collapse" aria-labelledby="headingUtilities"
+               data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                   <h6 class="collapse-header">Class Management:</h6>
+                   <a class="collapse-item" href="#">Classes</a>
+                   <a class="collapse-item" href="#">Subjects</a>
+                   <a class="collapse-item" href="#">timetable</a>
+                   <a class="collapse-item" href="#">school calender</a>
+
+               </div>
+           </div>
+       </li>
+
+
 
 
 

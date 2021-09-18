@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setup;
+use App\Models\County;
+use App\Models\Constituency;
 use App\Models\School;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class SetupController extends Controller
 {
+     public function __construct(){
+        return $this->middleware('setup');
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user = auth()->user()->id;
-
-        $admin = School::where('admin_id', $user)->first();
+    {
         
-        return view('admin.index', compact('admin'));
     }
 
     /**
@@ -26,9 +29,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(School $school)
     {
-        //
+        $counties = County::all();
+        $constituency = Constituency::all();
+        return view('setup.create',compact('school','counties','constituency'));
     }
 
     /**
@@ -45,10 +50,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Setup  $setup
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Setup $setup)
     {
         //
     }
@@ -56,10 +61,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Setup  $setup
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Setup $setup)
     {
         //
     }
@@ -68,10 +73,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Setup  $setup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Setup $setup)
     {
         //
     }
@@ -79,10 +84,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Setup  $setup
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Setup $setup)
     {
         //
     }

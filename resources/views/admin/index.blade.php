@@ -22,7 +22,11 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
 

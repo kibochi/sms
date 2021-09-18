@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSchoolRequest;
 use App\Models\School;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class SchoolController extends Controller
 {
+
+   
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user = auth()->user()->id;
-
-        $admin = School::where('admin_id', $user)->first();
-        
-        return view('admin.index', compact('admin'));
+    {
+        //
     }
 
     /**
@@ -37,18 +36,25 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSchoolRequest $request)
     {
-        //
+        $notification = array(
+        'message' => 'School profile created!', 
+        'alert-type' => 'success'
+);
+         $validated = $request->validated();
+
+         $school = School::create($validated);
+         return redirect('admin')->with($notification);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(School $school)
     {
         //
     }
@@ -56,10 +62,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(School $school)
     {
         //
     }
@@ -68,10 +74,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, School $school)
     {
         //
     }
@@ -79,10 +85,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(School $school)
     {
         //
     }

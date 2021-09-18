@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Lemon&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap");
+body {
+    background: #4369d7;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: black;
+    min-height: 100vh;
+}
+
+ul {
+    text-decoration: none !important;
+    list-style-type: none !important;
+}
+
+.text-muted a,
+.forgot a {
+    text-decoration: none;
+    color: #4369d7;
+}
+
+.input-group>div {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input-group input,
+.input-group select {
+    padding: 0 0 0 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+input.form-control:focus,
+select.form-control:focus {
+    box-shadow: 0px 0px 0px 1px #4369d7;
+    outline: none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.input-group input+label,
+.input-group select+label {
+    position: absolute;
+    left: 20px;
+    top: 17px;
+    font-size: 15px;
+}
+
+.input-group input:not(:placeholder-shown)+label,
+.input-group select:not(:placeholder-shown)+label,
+.input-group input:focus+label,
+.input-group select:focus+label {
+    font-size: 80%;
+    top: -10px;
+    color: #4369d7;
+    font-weight: bolder;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+button[type="submit"],
+.file-upload-btn {
+    background: #4369d7;
+    border: 1px solid #4369d7;
+    color: #eeeeee;
+    font-weight: 700;
+    border-radius: 5px;
+    width: 100%;
+    transition: background 0.4s ease;
+}
+
+.button a,
+.button a:hover {
+    color: #f0f0f0;
+    align-items: center;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+button[type="submit"]:hover,
+.file-upload-btn:hover {
+    background: #fcfcfc;
+    color: #000000;
+}
+
+.remove-image {
+    background: transparent;
+    border: 1px solid #9c1de7;
+    color: #020202;
+    font-weight: 700;
+    transition: color 0.3s, background 0.3s;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.remove-image:hover {
+    background: linear-gradient(to left, rgb(221, 20, 20), rgb(241, 66, 66));
+}
+
+.pr-lg-5 h4 {
+    font-weight: 600;
+}
+
+.login h2,
+.register h2 {
+    font-weight: 700;
+    transform: uppercase;
+    color: white;
+}
+
+.register h2::after,
+.register h2::before {
+    display: inline-block;
+    content: "";
+    border-top: 2px solid rgb(255, 255, 255);
+    width: 120px;
+    transform: translateY(-7px);
+    margin: 0 8px;
+}
+
+.forgot,
+.not {
+    text-align: center;
+    font-weight: bold;
+}
+
+.file-upload {
+    background-color: #ffffff;
+    width: auto;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.file-upload-btn:active {
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.file-upload-content {
+    display: none;
+    text-align: center;
+}
+
+.file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.image-upload-wrap {
+    margin-top: 5px;
+    border: 4px dashed rgb(156, 29, 231);
+    position: relative;
+}
+
+.image-dropping,
+.image-upload-wrap:hover {
+    background-color: #e2e2e2;
+    border: 4px dashed rgb(156, 29, 231);
+}
+
+.image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+}
+
+.drag-text {
+    text-align: center;
+}
+
+.drag-text h5 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #0d0e0d;
+    padding: 60px 0;
+}
+
+.file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.remove-image:active {
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.figure {
+    position: fixed;
+}
+
+.checks ul {
+    position: relative;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.checks li {
+    background-color: #dddddd;
+    padding: 10px 10px;
+    border-radius: 50px;
+    width: 50%;
+}
