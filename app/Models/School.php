@@ -9,7 +9,6 @@ class School extends Model
 {
     use HasFactory;
     protected $table = 'schools';
-
     protected $primaryKey = 'id';
     
     protected $fillable =
@@ -27,7 +26,7 @@ class School extends Model
      ];
 
 
-       public function users(){
-        return $this->belongsTo(User::class);
+       public function user(){
+        return $this->belongsTo(User::class, 'admin_id');
      }
 }

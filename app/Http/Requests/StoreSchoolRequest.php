@@ -23,15 +23,23 @@ class StoreSchoolRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+         
+        $rules = [
             'admin_id' =>'required', 
             'school_name' => 'required|min:3',
             'prefix_name' => 'required|min:3|max:5',
             'address' => 'required|min:3',
-            'email' => 'required|email|unique:schools,email',
-            'phone' => 'required|min:10|max:10|unique:schools,phone',
+            'email' => 'required|email|',
+            'phone' => 'required|min:10|max:10|',
             'county' => 'required',
             'constituency' => 'required'
         ];
+
+        if ($this->getMethod() == 'POST') {
+        $rules += ['email' => 'required|email|unique:schools,email'];
+        $rules += ['phone' => 'required|min:10|max:10|unique:schools,phone'];
+       
+    }
+    return $rules;
     }
 }

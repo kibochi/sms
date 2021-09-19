@@ -80,6 +80,7 @@ button[type="submit"],
     transition: background 0.4s ease;
 }
 
+
 .button a,
 .button a:hover {
     color: #f0f0f0;
@@ -112,11 +113,17 @@ button[type="submit"]:hover,
     font-weight: 600;
 }
 
-.login h2,
 .register h2 {
     font-weight: 700;
     transform: uppercase;
     color: white;
+}
+
+.login h2 {
+    font-weight: 700;
+    transform: uppercase;
+    color: rgb(3, 3, 3);
+    font-size: 22px;
 }
 
 .register h2::after,
@@ -124,7 +131,17 @@ button[type="submit"]:hover,
     display: inline-block;
     content: "";
     border-top: 2px solid rgb(255, 255, 255);
-    width: 120px;
+    width: 10%;
+    transform: translateY(-7px);
+    margin: 0 8px;
+}
+
+.login h2::after,
+.login h2::before {
+    display: inline-block;
+    content: "";
+    border-top: 2px solid rgb(0, 0, 0);
+    width: 10%;
     transform: translateY(-7px);
     margin: 0 8px;
 }

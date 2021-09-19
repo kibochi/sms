@@ -21,7 +21,7 @@ class checkSetup
         $school = School::where('admin_id' , $user)->get();
         if($school->count()){
            
-          return redirect()->route('admin');
+          return redirect()->route('school.index');
         }
         return $next($request);
     }

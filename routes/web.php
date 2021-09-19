@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,20 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+  
+   
     Route::get('/setup', [SetupController::class, 'create'])->name('setup.create');
+     Route::get('/school', [SchoolController::class, 'index'])->name('school.index');
+   
+  
     Route::post('/school', [SchoolController::class, 'store'])->name('school.store');
+     Route::get('/school/show/{school}', [SchoolController::class, 'show'])->name('school.show');
+    Route::get('/school/edit/{school}', [SchoolController::class, 'edit'])->name('school.edit');
+    Route::delete('/school/{school}', [SchoolController::class, 'destroy'])->name('school.destroy');
+    Route::get('/school/{id}', [UserController::class, 'show'])->name('user.show');
+
+   
+
     
 
 });

@@ -4,7 +4,7 @@
        <!-- Sidebar - Brand -->
        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 
-           <div class="sidebar-brand-text mt-3 mb-3  ">{{ $admin->school_name }}</div>
+           <div class="sidebar-brand-text mt-3 mb-3 ">{{ $school->school_name }}</div>
        </a>
 
        <!-- Divider -->

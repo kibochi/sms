@@ -8,9 +8,11 @@
     <title>sms</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
 
 
     <link
@@ -31,34 +33,50 @@
     <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
     <!-- Custom scripts for all pages-->
-    <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('js/sb-admin-2.js') }}">
+    </script>
 
     <script>
         @if (Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}";
-            switch(type){
-            case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
-        
-            case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
-        
-            case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-        
-            case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
+            toastr.options =
+            {
+            "closeButton" : true,
+            "progressBar" : true
             }
+            toastr.success("{{ session('message') }}");
+        @endif
+
+        @if (Session::has('error'))
+            toastr.options =
+            {
+            "closeButton" : true,
+            "progressBar" : true
+            }
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if (Session::has('info'))
+            toastr.options =
+            {
+            "closeButton" : true,
+            "progressBar" : true
+            }
+            toastr.info("{{ session('info') }}");
+        @endif
+
+        @if (Session::has('warning'))
+            toastr.options =
+            {
+            "closeButton" : true,
+            "progressBar" : true
+            }
+            toastr.warning("{{ session('warning') }}");
         @endif
     </script>
+    @stack('scripts')
 </body>
 
 </html>

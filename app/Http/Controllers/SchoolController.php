@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSchoolRequest;
+use App\Models\Constituency;
+use App\Models\County;
 use App\Models\School;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
@@ -17,7 +20,10 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user()->id;
+        $school = School::with(['user'])->where('admin_id',$user)->first();
+       
+        return view('school.index', compact('school'));
     }
 
     /**
@@ -45,7 +51,7 @@ class SchoolController extends Controller
          $validated = $request->validated();
 
          $school = School::create($validated);
-         return redirect('admin')->with($notification);
+         return redirect('school')->with($notification);
     }
 
     /**
@@ -56,8 +62,10 @@ class SchoolController extends Controller
      */
     public function show(School $school)
     {
-        //
+        return view('school.show',compact('school'));
     }
+
+  
 
     /**
      * Show the form for editing the specified resource.
@@ -67,7 +75,9 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        //
+        $counties = County::all();
+        $constituency = Constituency::all();
+        return view('school.edit',compact('school','counties','constituency'));
     }
 
     /**
@@ -77,9 +87,15 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(StoreSchoolRequest $request, School $school)
     {
-        //
+         $notification = array(
+        'message' => 'School profile Updated!', 
+        'alert-type' => 'warning'
+); 
+        $validated = $request->validated();
+         $school->update($validated);
+         return redirect('school')->with($notification);
     }
 
     /**
@@ -90,6 +106,7 @@ class SchoolController extends Controller
      */
     public function destroy(School $school)
     {
-        //
+        $school->delete();
+        return redirect('/');
     }
 }

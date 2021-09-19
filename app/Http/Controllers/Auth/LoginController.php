@@ -39,7 +39,7 @@ class LoginController extends Controller
     }
      protected function redirectTo(){
        if(auth()->user()->Role()){
-            return $redirectTo = route('admin');
+            return $redirectTo = route('school.index');
        }else{
           abort(404);
           return $redirectTo = RouteServiceProvider::HOME;

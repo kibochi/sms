@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\School;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,12 +13,11 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $user = auth()->user()->id;
-
-        $admin = School::where('admin_id', $user)->first();
-        
-        return view('admin.index', compact('admin'));
+    {
+         $user = auth()->user()->id;
+        $school = School::with(['user'])->where('admin_id',$user)->first();
+       
+        return view('school.index', compact('school'));
     }
 
     /**
@@ -50,7 +49,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
