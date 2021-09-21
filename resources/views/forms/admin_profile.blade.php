@@ -1,5 +1,5 @@
   <div class="row">
-      <div class="col-md-8 mt-4">
+      <div class="col-md-12 mt-4">
           <div class="card ">
               <div class="card-body">
                   <div class="row p-2">
@@ -7,7 +7,7 @@
                           <h6 class="mb-0">Names</h6>
                       </div>
                       <div class="col-sm-7 text-secondary">
-                          {{ $admin->firstname, $admin->lastname }}
+                          {{ $admin->firstname }} {{ $admin->lastname }}
                       </div>
                   </div>
                   <hr>

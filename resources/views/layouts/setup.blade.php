@@ -20,9 +20,13 @@
 <body>
     @yield('content')
 
+
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
     {{-- <script src="{{ asset('js/template.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script> --}}
+
+    @stack('scripts')
 </body>
 
 </html>

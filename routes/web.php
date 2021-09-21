@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ConstituencyController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\SchoolController;
+use App\Models\Constituency;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +32,14 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
      Route::resource('/school', SchoolController::class);
-      Route::get('/admin/{admin}', [AdminController::class, 'show'])->name('admin.show');
+    //   Route::get('/admin/{admin}', [AdminController::class, 'show'])->name('admin.show');
      Route::resource('/admin', AdminController::class);
     
     
      Route::resource('/setup', SetupController::class);
+
+     Route::get('/getCons/{id}', [ConstituencyController::class, 'getCons']);
+    
   
     
 

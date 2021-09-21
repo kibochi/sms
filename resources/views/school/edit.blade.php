@@ -21,16 +21,23 @@
                 <!-- topsidebar-->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                <div class="container">
+                    <div class="col-md-7  mx-auto">
+                        <div class="login text-center m-4">
+                            <h2>Edit Profile</h2>
                         </div>
-                    @endif
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="{{ route('school.update', $school) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    @include('forms.school_form')
 
+                                </form>
+                            </div>
+                        </div>
 
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->

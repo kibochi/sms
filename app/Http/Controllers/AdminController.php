@@ -55,7 +55,8 @@ class AdminController extends Controller
         $user = auth()->user()->id;
          $school = School::with(['user'])->where('admin_id', $user)->first();
          
-         
+         $admin= User::with(['schools'])->where('id', $user)->first();
+
          return view('admin.show',compact('admin', 'school'));
         
     }
@@ -99,8 +100,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $admin)
     {
-        //
+        $admin->delete();
+        return redirect('/');
     }
 }

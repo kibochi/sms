@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSchoolRequest;
+use App\Models\County;
+use App\Models\Constituency;
 use App\Models\School;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -70,7 +72,12 @@ class SchoolController extends Controller
      */
     public function edit(School $school)
     {
-        //
+        $counties = County::all(); 
+        $constituency = Constituency::all(); 
+         $user = auth()->user()->id;
+         $school = School::with(['user'])->where('admin_id', $user)->first();
+          $admin= User::with(['schools'])->where('id', $user)->first();
+        return view('school.edit',compact('school','admin','counties','constituency'));
     }
 
     /**
@@ -80,9 +87,17 @@ class SchoolController extends Controller
      * @param  \App\Models\School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, School $school)
+    public function update(StoreSchoolRequest $request, School $school)
     {
-        //
+         $notification = array(
+        'message' => 'profile created!', 
+        'alert-type' => 'success'
+        );
+         $validated = $request->validated();
+
+         $school->update($validated);
+         
+         return redirect('admin')->with($notification);
     }
 
     /**

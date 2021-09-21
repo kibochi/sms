@@ -39,6 +39,7 @@
 
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Core plugin JavaScript-->
     <!-- JavaScript Bundle with Popper -->
@@ -49,8 +50,10 @@
         integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
     <script>
         @if (Session::has('message'))
@@ -74,6 +77,8 @@
             }
         @endif
     </script>
+    @stack('scripts')
+
 </body>
 
 </html>
