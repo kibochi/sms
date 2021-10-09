@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class County extends Model
 {
     use HasFactory;
+    
+    protected $table = "counties";
+    protected $primaryKey = "id";
+
+
+    public function constituencies(){
+      return $this->hasMany(Constituency::class);
+}
 }

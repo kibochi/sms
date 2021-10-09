@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setup;
-use App\Models\County;
 use App\Models\Constituency;
+use App\Models\County;
 use App\Models\School;
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class SetupController extends Controller
+class StaffController extends Controller
 {
-     public function __construct(){
-        return $this->middleware('setup');
-
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $admin)
+    public function index()
     {
+        //
     }
 
     /**
@@ -29,11 +26,15 @@ class SetupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(School $school)
+    public function create(User $admin, Staff $staff)
     {
-        $counties = County::all();
-        $constituency = Constituency::with(['county'])->get();
-        return view('setup.create',compact('school','counties','constituency'));
+       
+        $user = auth()->user()->id;
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+         $admin= User::with(['schools'])->where('id', $user)->first();
+         $counties = County::all();
+        $constituency = Constituency::all();
+        return view('staff.create',compact('school','admin','staff','counties','constituency'));
     }
 
     /**
@@ -50,22 +51,21 @@ class SetupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Setup  $setup
+     * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function show(Setup $setup)
+    public function show(Staff $staff)
     {
-       
-       
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Setup  $setup
+     * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function edit(Setup $setup)
+    public function edit(Staff $staff)
     {
         //
     }
@@ -74,10 +74,10 @@ class SetupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setup  $setup
+     * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setup $setup)
+    public function update(Request $request, Staff $staff)
     {
         //
     }
@@ -85,10 +85,10 @@ class SetupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Setup  $setup
+     * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setup $setup)
+    public function destroy(Staff $staff)
     {
         //
     }

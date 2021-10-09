@@ -110,7 +110,7 @@
                              <select name="county" id="county"
                                  class="form-control @error('county') is-invalid @enderror">
                                  @foreach ($counties as $county)
-                                     <option value="{{ $county->id }}">{{ $county->name }}
+                                     <option value="{{ $county->county_number }}">{{ $county->name }}
                                      </option>
                                  @endforeach
                              </select>
