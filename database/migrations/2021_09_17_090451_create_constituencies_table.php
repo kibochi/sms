@@ -15,9 +15,10 @@ class CreateConstituenciesTable extends Migration
     {
         Schema::create('constituencies', function (Blueprint $table) {
              $table->id();
-            $table->integer('county_number');
+            $table->unsignedBigInteger('county_number');
             $table->string('name');
             $table->timestamps();
+             $table->foreign('county_number')->references('id')->on('counties')->onDelete('cascade');
         });
          DB::table('constituencies')->insert(
             array(
