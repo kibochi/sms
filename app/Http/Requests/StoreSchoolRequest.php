@@ -34,7 +34,7 @@ class StoreSchoolRequest extends FormRequest
             'constituency' => 'required'
         ];
 
-       if ($this->getMethod() == 'POST') {
+       if ($this->getMethod() === 'POST') {
         $rules += ['email' => 'required|email|unique:schools,email'];
         $rules += ['phone' => 'required|min:10|max:10|unique:schools,phone'];
     }

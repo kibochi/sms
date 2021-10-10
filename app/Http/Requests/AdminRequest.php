@@ -32,7 +32,7 @@ class AdminRequest extends FormRequest
             
         ];
 
-       if ($this->getMethod() == 'POST') {
+       if ($this->getMethod() === 'POST') {
         $rules += ['email' => 'required|email|unique:users,email'];
         $rules += ['phone' => 'required|min:10|max:10|unique:users,phone'];
     }
