@@ -1,10 +1,19 @@
+$("#myTable").DataTable({
+    select: true,
+});
+
 let time;
 let typing_duration = 3000;
 let school_name = document.querySelector("#school_name");
-const alert = document.querySelector(".alert");
+const myalert = document.querySelector(".alert");
+const addclass = document.querySelector("#addclass");
+
+addclass.addEventListener("click", function(e) {
+    e.preventDefault();
+});
 
 setTimeout(() => {
-    alert.classList.add("hidden");
+    myalert.classList.add("hidden");
 }, 2000);
 
 school_name.addEventListener("keyup", function() {
@@ -19,7 +28,6 @@ function makePrefix() {
     let prefix = school_name.value.match(/\b\w/g).join("").toUpperCase();
 
     let prefix_name = (document.getElementById("prefix_name").value = prefix);
-    console.log(prefix);
 }
 
 $("#delete_account").on("click", function(e) {

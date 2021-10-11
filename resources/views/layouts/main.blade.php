@@ -11,7 +11,7 @@
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 
 
 
@@ -37,6 +37,7 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <!-- JavaScript Bundle with Popper -->

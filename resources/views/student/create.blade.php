@@ -21,21 +21,27 @@
                 <!-- topsidebar-->
 
                 <!-- Begin Page Content -->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7  mx-auto">
+                <div class="container-fluid">
+                    @if (session('message'))
+                        <div class="alert alert-success text-center" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
+                    <div class="row ">
+                        <div class="col-md-9 mx-auto">
                             <div class="login text-center m-4">
-                                <h2>Edit Profile</h2>
+                                <h2>New Student</h2>
                             </div>
 
-                            <form action="{{ route('school.update', $school) }}" method="POST">
+                            <form id="valform" action="{{ route('student.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
-                                @method('PATCH')
-                                @include('forms.school_form')
 
+                                @include('forms.student_form');
                             </form>
-
                         </div>
+
+
                     </div>
 
                 </div>

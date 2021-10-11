@@ -10,7 +10,7 @@ body {
     font-family: sans-serif;
 }
 
-lines {
+.lines {
     position: absolute;
     top: 0;
     left: 0;
@@ -203,14 +203,14 @@ button[type="submit"]:hover,
 
 .image-upload-wrap {
     margin-top: 5px;
-    border: 4px dashed rgb(156, 29, 231);
+    border: 2px dashed rgb(67, 105, 214);
     position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
     background-color: #e2e2e2;
-    border: 4px dashed rgb(156, 29, 231);
+    border: 2px dashed rgb(67, 105, 214);
 }
 
 .image-title-wrap {

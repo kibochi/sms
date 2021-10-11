@@ -52,8 +52,8 @@
                data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Students:</h6>
-                   <a class="collapse-item" href="#">New Student</a>
-                   <a class="collapse-item" href="#">All Students</a>
+                   <a class="collapse-item" href="{{ route('student.index') }}">Students</a>
+
 
                </div>
            </div>
@@ -69,7 +69,7 @@
                data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Class Management:</h6>
-                   <a class="collapse-item" href="#">Classes</a>
+                   <a class="collapse-item" href="{{ route('classroom.index') }}">Classes</a>
                    <a class="collapse-item" href="#">Subjects</a>
                    <a class="collapse-item" href="#">timetable</a>
                    <a class="collapse-item" href="#">school calender</a>
