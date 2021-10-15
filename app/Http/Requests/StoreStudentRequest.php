@@ -24,23 +24,27 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
        
-         $rules = [
-           
+         $rules =  [
+            'admin_id' => 'required',
+            'student_profile' => 'sometimes|image|mimes:jpeg,png,jpg|max:2048',
             'firstname' => 'required|min:3',       
             'surname' => 'required|min:3',       
             'othername' => 'required|min:3',       
-            'student_id' => 'required|min:3',       
-            'email' => 'required|min:3',       
-            'dob' => 'required|min:3',       
-            'gender' => 'required|min:3',       
-            'class' => 'required|min:3',       
+            'student_id' => 'required',       
+            'class' => 'required',  
+            'dob' => 'required|date',       
+            'gender' => 'required',       
+                 
           ];
 
-         if ($this->getMethod() === 'POST') {
+          if ($this->getMethod() === 'POST') {
              $rules += ['student_id' => 'required|unique:students,student_id'];
-       
-         }
-             return $rules;
+          }
+
+        return $rules;
+
+
+
 
 
     }

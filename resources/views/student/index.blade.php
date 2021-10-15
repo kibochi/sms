@@ -30,7 +30,7 @@
                     <div class="row ">
                         <div class="col-md-8 mx-auto">
                             <div class="login text-center m-4">
-                                <h2>Classrooms</h2>
+                                <h2>Students</h2>
                             </div>
                             <div class="card">
                                 <div class="card-header">
@@ -56,6 +56,9 @@
                                                     <th class="text-center">
                                                         Class
                                                     </th>
+                                                    <th class="text-center">
+                                                        Action
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -67,6 +70,7 @@
                                                         <td class="text-center">
                                                             {{ $stud->student_id }}
                                                         </td>
+
                                                         <td class="text-center">
                                                             {{ $stud->firstname }}
                                                         </td>
@@ -80,7 +84,7 @@
 
 
                                                         <td class="text-center">
-                                                            <a href="{{ route('student.show', $student) }}"
+                                                            <a href="{{ route('student.show', $stud) }}"
                                                                 class="btn btn-info btn-sm">
                                                                 <i class="fa fa-edit"></i></a>
                                                         </td>

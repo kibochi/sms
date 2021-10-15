@@ -9,6 +9,8 @@ use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\FeeController;
 
 
 /*
@@ -42,6 +44,9 @@ Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
       Route::resource('/setup', SetupController::class);
       Route::resource('/classroom', ClassroomController::class);
       Route::resource('/student', StudentController::class);
+      Route::resource('/subject', SubjectController::class);
+      Route::resource('/fee', FeeController::class);
+    //    Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
     
 
      

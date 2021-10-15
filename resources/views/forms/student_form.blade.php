@@ -1,3 +1,9 @@
+ <nav style="--bs-breadcrumb-divider: '>';" class="mt-4 mb-3" aria-label="breadcrumb">
+     <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="{{ route('student.index') }}">All student</a></li>
+         <li class="breadcrumb-item active" aria-current="page">student</li>
+     </ol>
+ </nav>
  <input type="hidden" name="admin_id" value="{{ auth()->user()->id }}">
  <div class="row">
      <div class="col-md-4">
@@ -6,19 +12,19 @@
              <div class="card-body">
                  <div class="file-upload">
                      <div class="image-upload-wrap">
-                         <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                         <input class="file-upload-input" type='file' name="student_profile" onchange="readURL(this);"
+                             accept="image/*" required />
                          <div class="drag-text">
                              <h5>Drag and drop your profile Picture </h5>
                          </div>
                      </div>
                      <div class="file-upload-content">
                          <figure>
-                             <img class="file-upload-image" src="{{ asset('storage/' . $student->hospital_profile) }}"
-                                 alt=" your image" />
+                             <img class="file-upload-image" alt=" your image" />
                          </figure>
                          <div class="image-title-wrap">
-                             <button type="button " onclick="removeUpload()" class="remove-image btn btn-danger">Remove
-                                 <span class="image-title">Uploaded Image</span></button>
+
+
                          </div>
                      </div>
                      <p class="text-center mt-2"><strong>Or</strong></p>
@@ -93,14 +99,13 @@
 
                  </div>
                  <div class="row">
-                     <div class="col-md-7">
+                     <div class="col-md-5">
                          <div class="form-group ">
-
                              <div class="input-group">
                                  <div>
                                      <input type="text" class="form-control @error('student_id') is-invalid @enderror"
                                          placeholder=" student Id" name="student_id" id="student_id"
-                                         value="{{ old('student_id') ?? $student->student_id }}" readonly />
+                                         value="{{ $student_id ?? $student->student_id }}" required readonly />
 
 
                                      @error('student_id')
@@ -114,29 +119,32 @@
                          </div>
                      </div>
 
-                     <div class="col-md-5">
+                     <div class="col-md-7">
                          <div class="form-group ">
                              <div class="input-group">
                                  <div>
-                                     <input type="email" class="form-control  @error('email') is-invalid @enderror"
-                                         placeholder=" " name="email" id="email"
-                                         value="{{ old('email') ?? $student->email }}" autofocus required
-                                         autocomplete="email" />
-                                     <label for="email">Email</label>
-                                     @error('email')
+                                     <select name="class" id="class"
+                                         class="form-control @error('class') is-invalid @enderror" autofocus>
+                                         <option disabled selected>Class Joining</option>
+                                         @foreach ($classroom as $class)
+                                             <option value="{{ $class->classname }}">{{ $class->classname }}
+                                             </option>
+                                         @endforeach
+                                     </select>
+
+                                     @error('class')
                                          <span class="invalid-feedback" role="alert">
                                              <strong>{{ $message }}</strong>
                                          </span>
                                      @enderror
                                  </div>
                              </div>
-
                          </div>
                      </div>
                  </div>
 
                  <div class="row">
-                     <div class="col-md-4">
+                     <div class="col-md-6">
                          <div class="form-group ">
 
                              <div class="input-group">
@@ -154,7 +162,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-md-6">
                          <div class="form-group ">
 
 
@@ -178,32 +186,7 @@
                              </div>
                          </div>
                      </div>
-                     <div class="col-md-4">
-                         <div class="form-group ">
 
-
-                             <div class="input-group">
-                                 <div>
-                                     <select name="class" id="class"
-                                         class="form-control @error('class') is-invalid @enderror" autofocus>
-                                         <option disabled selected>Class Joining</option>
-                                         @foreach ($classroom as $class)
-                                             <option value="{{ $class->id }}">{{ $class->classname }}</option>
-
-                                         @endforeach
-
-
-                                     </select>
-                                     <label for="gender">Class Joining</label>
-                                     @error('class')
-                                         <span class="invalid-feedback" role="alert">
-                                             <strong>{{ $message }}</strong>
-                                         </span>
-                                     @enderror
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
                  </div>
 
 

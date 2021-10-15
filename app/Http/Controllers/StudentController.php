@@ -7,6 +7,8 @@ use App\Models\School;
 use App\Models\User;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreStudentRequest;
+use Intervention\Image\Facades\Image;
 
 
 class StudentController extends Controller
@@ -21,7 +23,7 @@ class StudentController extends Controller
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
-        $student = Student::all();
+        $student = Student::where('admin_id', $user)->get();
         return view('student.index', compact('admin', 'school', 'student'));
     }
 
@@ -32,12 +34,17 @@ class StudentController extends Controller
      */
     public function create( Student $student)
     {
+        
+         
+        
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
         $classroom = Classroom::all();
+        $student_id = $this->studentID();
         
-        return view('student.create', compact('admin', 'school', 'student', 'classroom'));
+        
+        return view('student.create', compact('admin', 'school', 'student', 'classroom', 'student_id'));
     }
 
     /**
@@ -46,9 +53,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        $student = Student::create($validate = $request->validated());
+         
+        $student=Student::create($validate = $request->validated());
+        $this->profileUpload($student);
         return redirect()->back()->with('message', 'student added successfully');
     }
 
@@ -60,7 +69,11 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        
+        return view('student.show', compact('admin', 'school','student'));
     }
 
     /**
@@ -71,7 +84,11 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $classroom = Classroom::all();
+        return view('student.edit', compact('admin', 'school','student','classroom'));
     }
 
     /**
@@ -81,9 +98,11 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StoreStudentRequest $request, Student $student)
     {
-        //
+       $student->update($validate = $request->validated());
+       $this->profileUpload($student);
+        return redirect()->back()->with('message', 'student updated successfully');
     }
 
     /**
@@ -94,6 +113,39 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+       $student->delete();
+       return redirect('/student')->with("message","student deleted successfuly");
     }
+
+    private function studentID(){
+        $user = auth()->user()->id;
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $student = student::where('admin_id',$user)->get();
+        $prefix_name = $school->prefix_name;
+        $new =  $student->count() + 1;   
+        $student_id = $prefix_name . "/" . $new . "/" . date('Y');
+        return $student_id;
+
+
+
+    }
+    private function profileUpload($student){
+            if( request()->hasFile('student_profile')) {
+                $student->update([
+                        'student_profile'=> request()->student_profile->store('profiles/students', 'public'),
+
+                 ]);
+                         $profile = Image::make(public_path('storage/' . $student->student_profile))->resize(300,300);
+                         $profile->save();
+
+                
+
+
+
+            }
+    }
+      
+
+
+    
 }

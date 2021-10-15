@@ -50,6 +50,7 @@
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('js/sb-admin-2.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/jq.js') }}"></script>
 
 
     @stack('scripts')
