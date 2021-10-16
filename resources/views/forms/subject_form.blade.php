@@ -1,16 +1,16 @@
-<div class="modal fade" id="newclass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="newsubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class=" modal-title ">New Classroom</h5>
-                <button class="   close" type="button" data-dismiss="modal" aria-label="Close">
+                <h5 class=" modal-title ">New Subject</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <form action="{{ route('classroom.store') }}" method="POST">
+                <form action="{{ route('subject.store') }}" method="POST">
                     @csrf
 
                     <div class="row mt-2">
@@ -23,13 +23,13 @@
                                     <div>
 
                                         <input type="text"
-                                            class="form-control  @error('classname') is-invalid @enderror"
-                                            placeholder=" " name="classname" id="classname"
-                                            value="{{ old('classname') }}" required />
-                                        <label for="classname">Class Name (eg Grade one)</label>
+                                            class="form-control  @error('subject_name') is-invalid @enderror"
+                                            placeholder=" " name="subject_name" id="subject_name"
+                                            value="{{ old('subject_name') ?? $subject->subject_name }}" required />
+                                        <label for="classname">Subject Name (eg Physics)</label>
 
 
-                                        @error('classname')
+                                        @error('subject_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

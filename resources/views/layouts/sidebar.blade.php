@@ -27,12 +27,12 @@
 
        <!-- Nav Item - Pages Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#classroom" aria-expanded="true"
                aria-controls="collapseTwo">
                <i class="fas fa-fw fa-user"></i>
                <span>Classroom</span>
            </a>
-           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+           <div id="classroom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Classrooms</h6>
                    <a class="collapse-item" href="{{ route('classroom.index') }}">Classroom</a>
@@ -43,13 +43,12 @@
 
        <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#students" aria-expanded="true"
+               aria-controls="collapseUtilities">
                <i class="fas fa-fw fa-user-graduate"></i>
                <span>Students</span>
            </a>
-           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-               data-parent="#accordionSidebar">
+           <div id="students" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Students:</h6>
                    <a class="collapse-item" href="{{ route('student.index') }}">Students</a>
@@ -61,13 +60,12 @@
 
        <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#subjects" aria-expanded="true"
+               aria-controls="collapseUtilities">
                <i class="fas fa-fw fa-sticky-note"></i>
                <span>Subjects</span>
            </a>
-           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-               data-parent="#accordionSidebar">
+           <div id="subjects" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Subjects:</h6>
                    <a class="collapse-item" href="{{ route('subject.index') }}">Subject</a>
@@ -77,15 +75,16 @@
            </div>
        </li>
 
+
+
        <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fees" aria-expanded="true"
+               aria-controls="collapseUtilities">
                <i class="fas fa-fw fa-dollar-sign"></i>
                <span>Fees</span>
            </a>
-           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-               data-parent="#accordionSidebar">
+           <div id="fees" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Fees:</h6>
                    <a class="collapse-item" href="{{ route('fee.index') }}">Fees</a>

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreSubjectRequest;
+use App\Models\School;
+use App\Models\Student;
+use App\Models\User;
 
 class SubjectController extends Controller
 {
@@ -12,9 +16,14 @@ class SubjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Subject $subject)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $subjects = Subject::all();
+       
+        return view('subject.index', compact('admin', 'school','subjects','subject'));
     }
 
     /**
@@ -33,9 +42,10 @@ class SubjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSubjectRequest $request)
     {
-        //
+        $subject = Subject::create($request->validated());
+        return redirect()->back()->with("message", "subject added success");
     }
 
     /**
@@ -46,7 +56,10 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        return view('subject.show', compact('admin', 'school','subject'));
     }
 
     /**
@@ -57,7 +70,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+       
     }
 
     /**
@@ -67,9 +80,10 @@ class SubjectController extends Controller
      * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(StoreSubjectRequest $request, Subject $subject)
     {
-        //
+        $subject->update($request->validated());
+        return redirect('subject')->with("message", "subject updated success");
     }
 
     /**
@@ -80,6 +94,7 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        $subject->delete();
+        return redirect('\subject')->with('message','subject deleted');
     }
 }

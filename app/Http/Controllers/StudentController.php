@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\School;
+use App\Models\Subject;
 use App\Models\User;
+use App\Models\Exam;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
@@ -117,6 +119,22 @@ class StudentController extends Controller
        return redirect('/student')->with("message","student deleted successfuly");
     }
 
+
+    public function results(Student $student)
+    {
+       
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $subjects = Subject::all();
+        $exams= Exam::where('student_id',$student->student_id)->get();
+       
+        return view('student.results', compact('admin', 'school', 'student','subjects','exams'));
+    }
+
+
+   
+
     private function studentID(){
         $user = auth()->user()->id;
         $school = School::with(['user'])->where('admin_id', $user)->first();
@@ -137,10 +155,6 @@ class StudentController extends Controller
                  ]);
                          $profile = Image::make(public_path('storage/' . $student->student_profile))->resize(300,300);
                          $profile->save();
-
-                
-
-
 
             }
     }

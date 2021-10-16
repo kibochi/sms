@@ -15,6 +15,9 @@ class CreateFeesTable extends Migration
     {
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
+            $table->string('fees_name');
+            $table->string('amount');
             $table->timestamps();
         });
     }

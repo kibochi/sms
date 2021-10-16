@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classroom;
-use App\Models\User;
-use App\Models\School;
+use App\Models\Exam;
 use App\Models\Student;
+use App\Models\School;
+use App\Models\User;
+use App\Models\Subject;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreClassroomRequest;
+use App\Http\Requests\StoreExamRequest;
 
-class ClassroomController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Classroom $classroom)
+    public function index()
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
-        $student = Student::where('admin_id', $user)->get();
-        $classroom = Classroom::all();
-        return view('classroom.index', compact('admin', 'school', 'classroom','student'));
-       
+        $subjects = Subject::all();
+        $student = Student::all();
+        return view('exam.index', compact('admin', 'school', 'student','subjects'));
     }
 
     /**
@@ -32,14 +32,14 @@ class ClassroomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Classroom $classroom)
+    public function create(Student $student)
     {
-        
+       
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
-     
-        return view('classroom.index', compact('admin', 'school', 'classroom'));
+        $subjects = Subject::all();
+        return view('student.results', compact('admin', 'school', 'student','subjects'));
     }
 
     /**
@@ -48,19 +48,20 @@ class ClassroomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreClassroomRequest $request)
+    public function store(StoreExamRequest $request, Student $student)
     {
-        $classroom = Classroom::create($validated = $request->validated());
-         return redirect()->back()->with('message', 'class created successfully');
+        
+         $exam=Exam::create($request->validated());
+         return redirect()->back()->with('message',"students results added");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Classroom  $classroom
+     * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function show(Classroom $classroom)
+    public function show(Exam $exam)
     {
         //
     }
@@ -68,10 +69,10 @@ class ClassroomController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Classroom  $classroom
+     * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function edit(Classroom $classroom)
+    public function edit(Exam $exam)
     {
         //
     }
@@ -80,10 +81,10 @@ class ClassroomController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Classroom  $classroom
+     * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(Request $request, Exam $exam)
     {
         //
     }
@@ -91,10 +92,10 @@ class ClassroomController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Classroom  $classroom
+     * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Classroom $classroom)
+    public function destroy(Exam $exam)
     {
         //
     }

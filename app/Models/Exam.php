@@ -4,17 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-class Subject extends Model
+use App\Models\Student;
+class Exam extends Model
 {
     use HasFactory;
 
-    protected $tables = "subjects";
-
+    protected $table ="exams";
     protected $primaryKey = "id";
 
     protected $fillable = [
         'admin_id',
-        'subject_name'
+        'student_id',
+        'subject_name',
+        'marks'
     ];
+
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
+
+  
 }

@@ -28,19 +28,17 @@
                         </div>
                     @endif
                     <div class="row ">
-                        <div class="col-md-9 mx-auto">
+                        <div class="col-md-5 mx-auto">
                             <div class="login text-center m-4">
-                                <h2>New Student</h2>
+                                <h2>Student Exams</h2>
                             </div>
 
-                            <form id="examform" action="{{ route('student.store') }}" method="POST"
+                            <form id="valform" action="{{ route('exam.store') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                @include('forms.student_form');
+                                @include('forms.exam_form');
                             </form>
-
-
                         </div>
 
 

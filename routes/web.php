@@ -11,6 +11,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\FeeController;
+use App\Http\Controllers\ExamController;
 
 
 /*
@@ -28,7 +29,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(["verify" => true]);
+Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -46,7 +47,8 @@ Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
       Route::resource('/student', StudentController::class);
       Route::resource('/subject', SubjectController::class);
       Route::resource('/fee', FeeController::class);
-    //    Route::get('/student/{student}', [StudentController::class, 'show'])->name('student.show');
+      Route::resource('/exam', ExamController::class);
+      Route::get('/results/{student}', [StudentController::class, 'results'])->name('results.create');
     
 
      

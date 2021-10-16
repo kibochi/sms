@@ -30,12 +30,12 @@
                     <div class="row ">
                         <div class="col-md-8 mx-auto">
                             <div class="login text-center m-4">
-                                <h2>Classrooms</h2>
+                                <h2>Subjects</h2>
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newclass"><i
-                                            class="fa fa-plus"></i> Classroom</button>
+                                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newsubject"><i
+                                            class="fa fa-plus"></i> Subject</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive-md">
@@ -44,36 +44,30 @@
                                                 <tr>
                                                     <th class="text-center">#</th>
                                                     <th class="text-center">
-                                                        Class Name
+                                                        Subject Name
                                                     </th>
-                                                    <th class="text-center">
-                                                        # Of Students
-                                                    </th>
+
                                                     <th class="text-center">
                                                         Action
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($classroom as $key => $class)
+                                                @foreach ($subjects as $key => $sub)
                                                     <tr>
                                                         <td class="text-center">
                                                             {{ $key + 1 }}
                                                         </td>
 
                                                         <td class="text-center">
-                                                            {{ $class->classname }}
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            {{ $student->count() }}
+                                                            {{ $sub->subject_name }}
                                                         </td>
 
 
                                                         <td class="text-center">
-                                                            <a href="{{ route('classroom.show', $class) }}"
-                                                                class="btn btn-info btn-sm">
-                                                                <i class="fa fa-edit"></i></a>
+                                                            <a href="{{ route('subject.show', $sub) }}"
+                                                                class="btn btn-info btn-sm"><i
+                                                                    class="fa fa-edit"></i></a>
                                                         </td>
                                                     </tr>
 
@@ -85,10 +79,8 @@
                             </div>
                         </div>
 
-
-
                     </div>
-                    @include('forms.classroom_form')
+                    @include('forms.subject_form')
                 </div>
                 <!-- /.container-fluid -->
 

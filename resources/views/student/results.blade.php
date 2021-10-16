@@ -30,12 +30,12 @@
                     <div class="row ">
                         <div class="col-md-8 mx-auto">
                             <div class="login text-center m-4">
-                                <h2>Classrooms</h2>
+                                <h2>Exam Results</h2>
                             </div>
                             <div class="card">
                                 <div class="card-header">
                                     <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newclass"><i
-                                            class="fa fa-plus"></i> Classroom</button>
+                                            class="fa fa-plus"></i> Exam</button>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive-md">
@@ -44,34 +44,36 @@
                                                 <tr>
                                                     <th class="text-center">#</th>
                                                     <th class="text-center">
-                                                        Class Name
+                                                        Subject Name
                                                     </th>
                                                     <th class="text-center">
-                                                        # Of Students
+                                                        Marks
                                                     </th>
+
                                                     <th class="text-center">
                                                         Action
                                                     </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($classroom as $key => $class)
+                                                @foreach ($exams as $key => $exam)
                                                     <tr>
                                                         <td class="text-center">
                                                             {{ $key + 1 }}
                                                         </td>
 
                                                         <td class="text-center">
-                                                            {{ $class->classname }}
+                                                            {{ $exam->subject_name }}
                                                         </td>
 
                                                         <td class="text-center">
-                                                            {{ $student->count() }}
+                                                            {{ $exam->marks }}
                                                         </td>
 
 
+
                                                         <td class="text-center">
-                                                            <a href="{{ route('classroom.show', $class) }}"
+                                                            <a href="{{ route('exam.show', $exam) }}"
                                                                 class="btn btn-info btn-sm">
                                                                 <i class="fa fa-edit"></i></a>
                                                         </td>

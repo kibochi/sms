@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-body">
+        <input type="hidden" name="admin_id" value="{{ auth()->user()->id }}">
+        <input type="hidden" name="student_id" value="{{ $student->student_id }}">
+        <div class="table-responsive-md">
+            <table class="table table-md table-stripped">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="text-center">
+                            Subject Name
+                        </th>
+                        <th class="text-center">
+                            Marks
+                        </th>
+                        <th class="text-center">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td class="text-center">
+                            <input type="text" name="subject_name[]" placeholder="eg. Computer" class="form-control">
+                        </td>
+                        <td class="text-center">
+                            <input type="number" name="marks[]" placeholder="80" class="form-control">
+                        </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-outline-dark ml-auto" id="addfield"><i
+                                    class="fa fa-plus"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <!-- Submit Button -->
+        <div class="form-group col-lg-12 mx-auto mt-3">
+            <button type="submit" class="btn btn2 btn-block btn-dark ">save</button>
+        </div>
+    </div>
+</div>

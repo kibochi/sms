@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClassroomRequest extends FormRequest
+class StoreSubjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,17 +21,18 @@ class StoreClassroomRequest extends FormRequest
      *
      * @return array
      */
-     public function rules()
+    public function rules()
     {
-    $rules = [
+         $rules = [
             'admin_id' => 'required',
-            'classname' => 'required|min:3',       
-    ];
+            'subject_name' => 'required|min:3',       
+         ];
 
-       if ($this->getMethod() === 'POST') {
-            $rules += ['classname' => 'required|unique:classrooms,classname'];
+            if ($this->getMethod() === 'POST') {
+                    $rules += ['subject_name' => 'required|unique:subjects,subject_name'];
        
     }
-    return $rules;
+         return $rules;
     }
+    
 }

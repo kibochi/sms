@@ -47,3 +47,24 @@ $("#delete_student").on("click", function(e) {
 $("#myTable").DataTable({
     select: true,
 });
+
+$("#addfield").on("click", function() {
+    var html = "";
+    html += "<tr>";
+    html +=
+        '<td><input type="text" name="subject_name[]" placeholder="eg. Computer" class="form-control"></td>';
+
+    html +=
+        '<td><input type="number" name="marks[]" placeholder="eg. 80" class="form-control"></td>';
+
+    html +=
+        '<td><button type="button" class="btn btn-outline-danger ml-auto" id="removefield"><i class="fa fa-trash"></i></button> </td>';
+
+    html += "</tr>";
+
+    $("tbody").append(html);
+});
+
+$(document).on("click", "#removefield", function() {
+    $(this).closest("tr").remove();
+});
