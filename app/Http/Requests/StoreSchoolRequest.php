@@ -28,7 +28,7 @@ class StoreSchoolRequest extends FormRequest
             'school_name' => 'required|min:3',
             'prefix_name' => 'required|min:3|max:5',     
             'email' => 'required|email',
-            'phone' => 'required|min:10|max:10',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             
         ];
 

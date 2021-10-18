@@ -26,9 +26,7 @@ class FeeController extends Controller
         $school = School::with(['user'])->where('admin_id', $user)->first();
         $student = Student::all();
         $fees = Fee::where('admin_id', $user)->get();
-        foreach($fees as $fee){
-            $total = $fee->sum('amount');
-        }
+        $total = $fees->sum('amount');
         return view('fee.index', compact('admin', 'school', 'student','fees','total'));
     }
 
@@ -39,7 +37,7 @@ class FeeController extends Controller
      */
     public function create()
     {
-       $user = auth()->user()->id;
+        $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
       

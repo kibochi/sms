@@ -62,7 +62,10 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        return view('classroom.show', compact('admin', 'school', 'classroom'));
     }
 
     /**
@@ -83,9 +86,10 @@ class ClassroomController extends Controller
      * @param  \App\Models\Classroom  $classroom
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Classroom $classroom)
+    public function update(StoreClassroomRequest $request, Classroom $classroom)
     {
-        //
+        $classroom->update($request->validated());
+         return redirect()->back()->with('message', 'classroom updated successfully');
     }
 
     /**
@@ -96,6 +100,6 @@ class ClassroomController extends Controller
      */
     public function destroy(Classroom $classroom)
     {
-        //
+        
     }
 }
