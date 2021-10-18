@@ -22,19 +22,20 @@
 
                 <!-- Begin Page Content -->
                 <div class="container">
-                    <div class="col-md-7  mx-auto">
-                        <div class="login text-center m-4">
-                            <h2>Edit Profile</h2>
+                    <div class="row">
+                        <div class="col-md-7  mx-auto">
+                            <div class="login text-center m-4">
+                                <h2>Edit Profile</h2>
+                            </div>
+
+                            <form action="{{ route('school.update', $school) }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                @include('forms.school_form')
+
+                            </form>
+
                         </div>
-
-                        <form action="{{ route('school.update', $school) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            @include('forms.school_form')
-
-                        </form>
-
-
                     </div>
 
                 </div>

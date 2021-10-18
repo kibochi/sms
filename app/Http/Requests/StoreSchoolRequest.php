@@ -32,10 +32,10 @@ class StoreSchoolRequest extends FormRequest
             
         ];
 
-       if ($this->getMethod() === 'POST') {
-        $rules += ['email' => 'required|email|unique:schools,email'];
-        $rules += ['phone' => 'required|min:10|max:10|unique:schools,phone'];
-    }
-    return $rules;
+        if ($this->getMethod() === 'POST') {
+             $rules += ['email' => 'required|email|unique:schools,email'];
+             $rules += ['phone' => 'required|min:10|max:10|unique:schools,phone'];
+        }
+             return $rules;
     }
 }

@@ -1,13 +1,14 @@
 let time;
-let typing_duration = 3000;
-let school_name = document.querySelector("#school_name");
-const alert = document.querySelector(".alert");
+let typing_duration = 1000;
+const school_name = document.querySelector("#school_name");
+const myalert = document.querySelector(".alert");
+const addclass = document.querySelector("#addclass");
 
 setTimeout(() => {
-    alert.classList.add("hidden");
+    myalert.classList.add("hidden");
 }, 2000);
 
-school_name.addEventListener("keyup", function() {
+school_name.addEventListener("keyup", () => {
     clearTimeout(time);
     if (school_name.value) {
         time = setTimeout(makePrefix, typing_duration);
@@ -19,31 +20,7 @@ function makePrefix() {
     let prefix = school_name.value.match(/\b\w/g).join("").toUpperCase();
 
     let prefix_name = (document.getElementById("prefix_name").value = prefix);
-    console.log(prefix);
 }
-
-$("#delete_account").on("click", function(e) {
-    e.preventDefault();
-
-    // var id = $(this).data("id");
-    // var token = $("meta[name='csrf-token']").attr("content");
-
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete",
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var form = document.getElementById("form-delete").submit();
-
-            Swal.fire("Deleted!", "Your Account has been deleted.", "success");
-        }
-    });
-});
 
 $('select[name="county"]').on("change", function(e) {
     e.preventDefault();

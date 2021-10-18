@@ -12,7 +12,7 @@
 
        <!-- Nav Item - Dashboard -->
        <li class="nav-item">
-           <a class="nav-link" href="index.html">
+           <a class="nav-link" href="{{ route('admin.index') }}">
                <i class="fas fa-fw fa-tachometer-alt"></i>
                <span>Dashboard</span></a>
        </li>
@@ -27,52 +27,49 @@
 
        <!-- Nav Item - Pages Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#classroom" aria-expanded="true"
                aria-controls="collapseTwo">
                <i class="fas fa-fw fa-user"></i>
-               <span>Staff</span>
+               <span>Classroom</span>
            </a>
-           <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+           <div id="classroom" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
-                   <h6 class="collapse-header">Manage Staff:</h6>
-                   <a class="collapse-item" href="{{ route('staff.create') }}">New Staff</a>
-                   <a class="collapse-item" href="">All Staff</a>
+                   <h6 class="collapse-header">Manage Classrooms</h6>
+                   <a class="collapse-item" href="{{ route('classroom.index') }}">Classroom</a>
+
                </div>
            </div>
        </li>
 
        <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#students" aria-expanded="true"
+               aria-controls="collapseUtilities">
                <i class="fas fa-fw fa-user-graduate"></i>
                <span>Students</span>
            </a>
-           <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-               data-parent="#accordionSidebar">
+           <div id="students" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
                    <h6 class="collapse-header">Manage Students:</h6>
-                   <a class="collapse-item" href="#">New Student</a>
-                   <a class="collapse-item" href="#">All Students</a>
+                   <a class="collapse-item" href="{{ route('student.index') }}">Students</a>
+
 
                </div>
            </div>
        </li>
 
+       <!-- Nav Item - Utilities Collapse Menu -->
        <li class="nav-item">
-           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#subjects" aria-expanded="true"
                aria-controls="collapseUtilities">
-               <i class="fas fa-fw fa-user-graduate"></i>
-               <span>Utilities</span>
+               <i class="fas fa-fw fa-sticky-note"></i>
+               <span>Subjects</span>
            </a>
-           <div id="collapse3" class="collapse" aria-labelledby="headingUtilities"
-               data-parent="#accordionSidebar">
+           <div id="subjects" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                <div class="bg-white py-2 collapse-inner rounded">
-                   <h6 class="collapse-header">Class Management:</h6>
-                   <a class="collapse-item" href="#">Classes</a>
-                   <a class="collapse-item" href="#">Subjects</a>
-                   <a class="collapse-item" href="#">timetable</a>
-                   <a class="collapse-item" href="#">school calender</a>
+                   <h6 class="collapse-header">Manage Subjects:</h6>
+                   <a class="collapse-item" href="{{ route('subject.index') }}">Subject</a>
+
 
                </div>
            </div>
@@ -80,14 +77,23 @@
 
 
 
+       <!-- Nav Item - Utilities Collapse Menu -->
+       <li class="nav-item">
+           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#fees" aria-expanded="true"
+               aria-controls="collapseUtilities">
+               <i class="fas fa-fw fa-dollar-sign"></i>
+               <span>Fees</span>
+           </a>
+           <div id="fees" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+               <div class="bg-white py-2 collapse-inner rounded">
+                   <h6 class="collapse-header">Manage Fees:</h6>
+                   <a class="collapse-item" href="{{ route('fee.index') }}">Fees</a>
 
-
-
+               </div>
+           </div>
+       </li>
 
        <!-- Nav Item - Pages Collapse Menu -->
-
-
-
 
        <!-- Divider -->
        <hr class="sidebar-divider d-none d-md-block">
