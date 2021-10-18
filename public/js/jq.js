@@ -1,3 +1,23 @@
+$("#delete_fee").on("click", function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var form = document.getElementById("form-delete").submit();
+
+            Swal.fire("Deleted!", "Fee deleted.", "success");
+        }
+    });
+});
+
 $("#delete_account").on("click", function(e) {
     e.preventDefault();
 
@@ -47,6 +67,13 @@ $("#delete_student").on("click", function(e) {
 $("#myTable").DataTable({
     select: true,
 });
+$("#myTabletwo").DataTable({
+    select: true,
+});
+
+$("#myTable3").DataTable({
+    select: true,
+});
 
 $("#addfield").on("click", function() {
     var html = "";
@@ -68,3 +95,22 @@ $("#addfield").on("click", function() {
 $(document).on("click", "#removefield", function() {
     $(this).closest("tr").remove();
 });
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $(".image-upload-wrap").hide();
+
+            $(".file-upload-image").attr("src", e.target.result);
+            $(".file-upload-content").show();
+
+            $(".image-title").html(input.files[0].name);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        removeUpload();
+    }
+}

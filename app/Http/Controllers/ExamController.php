@@ -50,7 +50,6 @@ class ExamController extends Controller
      */
     public function store(StoreExamRequest $request, Student $student)
     {
-        
          $exam=Exam::create($request->validated());
          return redirect()->back()->with('message',"students results added");
     }
@@ -63,7 +62,12 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
-        //
+        $student = Exam::with('student')->get();
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $subjects = Subject::all();
+        return view('exam.show', compact('admin', 'school', 'student','subjects','exam'));
     }
 
     /**
@@ -84,9 +88,10 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exam $exam)
+    public function update(StoreExamRequest $request, Exam $exam)
     {
-        //
+         $exam->update($request->validated());
+         return redirect()->back()->with('message',"students results added");
     }
 
     /**

@@ -29,13 +29,33 @@
                     @endif
                     <div class="row ">
                         <div class="col-md-8 mx-auto">
-                            <div class="login text-center m-4">
+                            <div class="login text-center ">
                                 <h2>Exam Results</h2>
+                            </div>
+                            <nav style="--bs-breadcrumb-divider: '>';" class="mt-4 mb-3" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+
+                                    <li class="breadcrumb-item"><a href="{{ route('student.show', $student) }}">
+                                            Go back</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="{{ route('student.create') }}">New student</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                            <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newexam"><i
+                                    class="fa fa-plus"></i> Attach Results</button>
+                            <div class="student_details mt-4">
+
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newclass"><i
-                                            class="fa fa-plus"></i> Exam</button>
+                                    <ul>
+                                        <li>Reg No : {{ $student->student_id }}</li>
+                                        <li>Student Names : {{ $student->firstname }} {{ $student->surname }}
+                                            {{ $student->othername }}</li>
+                                        <li>Student Class : {{ $student->class }}</li>
+                                    </ul>
+
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive-md">
@@ -50,9 +70,7 @@
                                                         Marks
                                                     </th>
 
-                                                    <th class="text-center">
-                                                        Action
-                                                    </th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -72,11 +90,8 @@
 
 
 
-                                                        <td class="text-center">
-                                                            <a href="{{ route('exam.show', $exam) }}"
-                                                                class="btn btn-info btn-sm">
-                                                                <i class="fa fa-edit"></i></a>
-                                                        </td>
+
+
                                                     </tr>
 
                                                 @endforeach
@@ -90,7 +105,7 @@
 
 
                     </div>
-                    @include('forms.classroom_form')
+                    @include('forms.exam_form')
                 </div>
                 <!-- /.container-fluid -->
 

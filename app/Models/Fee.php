@@ -11,9 +11,21 @@ class Fee extends Model
     protected $tables = "fees";
     protected $primaryKey = "id";
 
-    protected $fillables = [
+    protected $fillable = [
         'admin_id',
-        'fees_name',
+        'fee_name',
         'amount',
+        'duration',
     ];
+
+    // public function getAmountAttribute(){
+    //     return $this->attributes['amount'] /100;
+    // }
+
+
+    //  public function setPriceAttribute($val){
+    //     $this->attributes['amount'] = $val * 100;
+    // }
+
+  
 }

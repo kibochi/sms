@@ -28,43 +28,60 @@
                         </div>
                     @endif
                     <div class="row ">
-                        <div class="col-md-9 mx-auto">
-                            <div class="login text-center m-4">
-                                <h2>Fees Structure</h2>
+                        <div class="col-md-8 mx-auto">
+                            <div class="login text-center ">
+                                <h2>Fees Paid</h2>
+                            </div>
+                            <nav style="--bs-breadcrumb-divider: '>';" class="mt-4 mb-3" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+
+                                    <li class="breadcrumb-item"><a href="{{ route('student.show', $student) }}">
+                                            Go back</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="{{ route('student.create') }}">New student</a>
+                                    </li>
+                                </ol>
+                            </nav>
+                            <button class="btn btn-outline-dark" data-toggle="modal" data-target="#newfee"><i
+                                    class="fa fa-plus"></i> Attach Fees</button>
+                            <div class="student_details mt-4">
+
                             </div>
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header ">
                                     <div class="row">
-                                        <div class="col-auto">
-                                            <button class="btn btn-outline-dark" data-toggle="modal"
-                                                data-target="#newfee"><i class="fa fa-plus"></i> New Fee</button>
+                                        <ul>
+                                            <li>Reg No : {{ $student->student_id }}</li>
+                                            <li>Student Names : {{ $student->firstname }} {{ $student->surname }}
+                                                {{ $student->othername }}</li>
+                                            <li>Student Class : {{ $student->class }}</li>
+                                        </ul>
 
-                                        </div>
-                                        <div class="col-auto ml-auto"><strong>Total <i class="fa fa-dollar-sign"></i>
+
+
+                                        <div class="col-auto ml-auto">
+                                            <strong>Total <i class="fa fa-dollar-sign"></i>
                                                 {{ $total }}
                                             </strong>
                                         </div>
+
                                     </div>
+
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive-md">
-                                        <table class="table table-md table-stripped" id="myTable">
+                                        <table class="table table-md table-stripped" id="myTable3">
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th class="text-center">#</th>
                                                     <th class="text-center">
-                                                        Fee Name
-                                                    </th>
-                                                    <th class="text-center">
-                                                        Duration
+                                                        Paid Date
                                                     </th>
                                                     <th class="text-center">
                                                         Amount
                                                     </th>
 
-                                                    <th class="text-center">
-                                                        Action
-                                                    </th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -73,13 +90,11 @@
                                                         <td class="text-center">
                                                             {{ $key + 1 }}
                                                         </td>
-                                                        <td class="text-center">
-                                                            {{ $fee->fee_name }}
-                                                        </td>
 
                                                         <td class="text-center">
-                                                            {{ $fee->duration }}
+                                                            {{ $fee->created_at }}
                                                         </td>
+
                                                         <td class="text-center">
                                                             {{ $fee->amount }}
                                                         </td>
@@ -87,11 +102,6 @@
 
 
 
-                                                        <td class="text-center">
-                                                            <a href="{{ route('fee.show', $fee) }}"
-                                                                class="btn btn-info btn-sm">
-                                                                <i class="fa fa-edit"></i></a>
-                                                        </td>
                                                     </tr>
 
                                                 @endforeach
@@ -99,13 +109,13 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
 
+
                     </div>
-                    @include('forms.fee_form')
+                    @include('forms.attach_fee_form')
                 </div>
                 <!-- /.container-fluid -->
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\StudentFee;
 use App\Models\School;
 use App\Models\Subject;
 use App\Models\User;
 use App\Models\Exam;
+use App\Models\Fee;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
@@ -74,6 +76,8 @@ class StudentController extends Controller
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
+        $fees = StudentFee::with('student')->get();
+       
         
         return view('student.show', compact('admin', 'school','student'));
     }
@@ -127,10 +131,37 @@ class StudentController extends Controller
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
         $subjects = Subject::all();
-        $exams= Exam::where('student_id',$student->student_id)->get();
-       
+        $exams= Exam::where('student_id',$student->id)->get();
         return view('student.results', compact('admin', 'school', 'student','subjects','exams'));
     }
+
+
+     public function attachfees(Student $student)
+    {
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $fees = StudentFee::with('student')->where('student_id',$student->id)->get();
+
+        foreach($fees as $fee){
+            $total = $fee->sum('amount');
+        }
+
+        return view('student.fees', compact('admin', 'school', 'student','fees','total'));
+    }
+    
+      public function showfees(Student $student, StudentFee $fee )
+    {
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $fees = StudentFee::with('student')->where('student_id',$student->id)->get();
+
+        return view('student.fees_show', compact('admin', 'school', 'student','fees'));
+    }
+
+
+    
 
 
    

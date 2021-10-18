@@ -4,17 +4,9 @@
         <li class="breadcrumb-item active" aria-current="page">student</li>
     </ol>
 </nav>
-<div class="buttons mb-3">
-    <div class="row">
-        <div class="col-auto ml-auto">
-            <a href="{{ route('results.create', $student) }}" class="btn btn-sm btn-outline-dark py-2 px-4">Exam
-                Results</a>
-        </div>
-        <div class="col-auto">
-            <a href="" class="btn btn-sm btn-outline-success py-2 px-4">Fees</a>
-        </div>
-    </div>
-</div>
+
+
+
 <div class="row gutters-sm">
     <div class="col-md-4 mb-3">
         <div class="card">
@@ -33,6 +25,19 @@
     </div>
     <div class="col-md-8">
         <div class="card mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-auto ml-auto">
+                        <a href="{{ route('results.create', $student) }}"
+                            class="btn btn-sm btn-outline-dark py-2 px-4">Exam
+                            Results</a>
+                        <a href="{{ route('student.fees', $student) }}"
+                            class="btn btn-sm btn-outline-success py-2 px-4">Fees
+                        </a>
+                    </div>
+
+                </div>
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-3">

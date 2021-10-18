@@ -27,7 +27,7 @@
 
                          </div>
                      </div>
-                     <p class="text-center mt-2"><strong>Or</strong></p>
+
                      <button class="file-upload-btn btn" type="button"
                          onclick="$('.file-upload-input').trigger( 'click' )">Select Image</button>
                  </div>

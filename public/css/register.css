@@ -32,14 +32,6 @@ a {
     list-style-type: none !important;
 }
 
-.toast {
-    position: fixed;
-    top: 150px;
-    right: 0;
-    color: black;
-    z-index: 1000;
-}
-
 .text-muted a,
 .forgot a {
     text-decoration: none;
@@ -118,20 +110,6 @@ button[type="submit"]:hover,
 .btn2:hover {
     background: #fcfcfc;
     color: #000000;
-}
-
-.remove-image {
-    background: transparent;
-    border: 1px solid #9c1de7;
-    color: #020202;
-    font-weight: 700;
-    transition: color 0.3s, background 0.3s;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.remove-image:hover {
-    background: linear-gradient(to left, rgb(221, 20, 20), rgb(241, 66, 66));
 }
 
 .pr-lg-5 h4 {

@@ -50,7 +50,7 @@ class ClassroomController extends Controller
      */
     public function store(StoreClassroomRequest $request)
     {
-        $classroom = Classroom::create($validated = $request->validated());
+        $classroom = Classroom::create($request->validated());
          return redirect()->back()->with('message', 'class created successfully');
     }
 

@@ -34,5 +34,15 @@ class Student extends Model
    public function exams(){
       return $this->hasMany(Exam::class);
   }
+
+  /**
+   * Get all of the fees for the Student
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function fees(): HasMany
+  {
+      return $this->hasMany(StudentFee::class);
+  }
     
 }

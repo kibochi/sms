@@ -1,5 +1,5 @@
 let time;
-let typing_duration = 3000;
+let typing_duration = 1000;
 const school_name = document.querySelector("#school_name");
 const myalert = document.querySelector(".alert");
 const addclass = document.querySelector("#addclass");

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fee;
+use App\Models\Exam;
+use App\Models\Student;
+use App\Models\School;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\FeeRequest;
 
 class FeeController extends Controller
 {
@@ -12,9 +17,19 @@ class FeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+      public function index()
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        $student = Student::all();
+        $fees = Fee::where('admin_id', $user)->get();
+        foreach($fees as $fee){
+            $total = $fee->sum('amount');
+        }
+        return view('fee.index', compact('admin', 'school', 'student','fees','total'));
     }
 
     /**
@@ -24,7 +39,20 @@ class FeeController extends Controller
      */
     public function create()
     {
-        //
+       $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+      
+        return view('fee.index', compact('admin', 'school', 'student','fees'));
+    }
+
+     public function attachfees(Student $student)
+    {
+       $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+      
+        return view('fee.index', compact('admin', 'school', 'student','fees'));
     }
 
     /**
@@ -33,9 +61,11 @@ class FeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FeeRequest $request)
     {
-        //
+        $fee = Fee::create($request->validated());
+
+        return redirect()->back()->with("fees Added");
     }
 
     /**
@@ -46,7 +76,10 @@ class FeeController extends Controller
      */
     public function show(Fee $fee)
     {
-        //
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        return view('fee.show', compact('admin', 'school','fee'));
     }
 
     /**
@@ -67,9 +100,11 @@ class FeeController extends Controller
      * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fee $fee)
+    public function update(FeeRequest $request, Fee $fee)
     {
-        //
+       $fee->update($request->validated());
+
+        return redirect()->back()->with("message","fees Updated");
     }
 
     /**
@@ -80,6 +115,7 @@ class FeeController extends Controller
      */
     public function destroy(Fee $fee)
     {
-        //
+        $fee->delete();
+        return redirect('/fee')->with("message", 'Fee deleted');
     }
 }

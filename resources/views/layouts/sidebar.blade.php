@@ -12,7 +12,7 @@
 
        <!-- Nav Item - Dashboard -->
        <li class="nav-item">
-           <a class="nav-link" href="index.html">
+           <a class="nav-link" href="{{ route('admin.index') }}">
                <i class="fas fa-fw fa-tachometer-alt"></i>
                <span>Dashboard</span></a>
        </li>
@@ -89,23 +89,11 @@
                    <h6 class="collapse-header">Manage Fees:</h6>
                    <a class="collapse-item" href="{{ route('fee.index') }}">Fees</a>
 
-
                </div>
            </div>
        </li>
 
-
-
-
-
-
-
-
-
        <!-- Nav Item - Pages Collapse Menu -->
-
-
-
 
        <!-- Divider -->
        <hr class="sidebar-divider d-none d-md-block">
