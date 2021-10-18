@@ -22,7 +22,7 @@ class ClassroomController extends Controller
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
         $student = Student::where('admin_id', $user)->get();
-        $classroom = Classroom::all();
+        $classroom = Classroom::where('admin_id', $user)->get();
         return view('classroom.index', compact('admin', 'school', 'classroom','student'));
        
     }

@@ -141,11 +141,11 @@ class StudentController extends Controller
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
         $school = School::with(['user'])->where('admin_id', $user)->first();
-        $fees = StudentFee::with('student')->where('student_id',$student->id)->get();
+        $fees = StudentFee::with('student')->where( 'student_id', $student->id)->get();
+        $total = $fees->sum('amount');
 
-        foreach($fees as $fee){
-            $total = $fee->sum('amount');
-        }
+       
+      
 
         return view('student.fees', compact('admin', 'school', 'student','fees','total'));
     }
