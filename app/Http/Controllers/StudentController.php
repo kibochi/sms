@@ -26,9 +26,9 @@ class StudentController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+        
         $student = Student::where('admin_id', $user)->get();
-        return view('student.index', compact('admin', 'school', 'student'));
+        return view('student.index', compact('admin', 'student'));
     }
 
     /**
@@ -43,12 +43,12 @@ class StudentController extends Controller
         
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+  
         $classroom = Classroom::all();
         $student_id = $this->studentID();
         
         
-        return view('student.create', compact('admin', 'school', 'student', 'classroom', 'student_id'));
+        return view('student.create', compact('admin', 'student', 'classroom', 'student_id'));
     }
 
     /**
@@ -140,24 +140,24 @@ class StudentController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+      
         $fees = StudentFee::with('student')->where( 'student_id', $student->id)->get();
         $total = $fees->sum('amount');
 
        
       
 
-        return view('student.fees', compact('admin', 'school', 'student','fees','total'));
+        return view('student.fees', compact('admin',  'student','fees','total'));
     }
     
       public function showfees(Student $student, StudentFee $fee )
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+       
         $fees = StudentFee::with('student')->where('student_id',$student->id)->get();
 
-        return view('student.fees_show', compact('admin', 'school', 'student','fees'));
+        return view('student.fees_show', compact('admin',  'student','fees'));
     }
 
 

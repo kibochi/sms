@@ -53,9 +53,9 @@ class SchoolController extends Controller
      */
     public function show(School $school , User $admin)
     {
-        $user = auth()->user()->id;
-         $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('school.index',compact('school','admin'));
+        
+        
+        return view('school.index',compact('admin'));
     }
 
     /**
@@ -68,9 +68,9 @@ class SchoolController extends Controller
     {
         
          $user = auth()->user()->id;
-         $school = School::with(['user'])->where('admin_id', $user)->first();
+        
           $admin= User::with(['schools'])->where('id', $user)->first();
-        return view('school.edit',compact('school','admin'));
+        return view('school.edit',compact('admin'));
     }
 
     /**

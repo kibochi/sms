@@ -21,10 +21,9 @@ class ExamController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
         $subjects = Subject::all();
         $student = Student::all();
-        return view('exam.index', compact('admin', 'school', 'student','subjects'));
+        return view('exam.index', compact('admin',  'student','subjects'));
     }
 
     /**
@@ -37,9 +36,9 @@ class ExamController extends Controller
        
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+       
         $subjects = Subject::all();
-        return view('student.results', compact('admin', 'school', 'student','subjects'));
+        return view('student.results', compact('admin', 'student','subjects'));
     }
 
     /**
@@ -65,9 +64,9 @@ class ExamController extends Controller
         $student = Exam::with('student')->get();
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+      
         $subjects = Subject::all();
-        return view('exam.show', compact('admin', 'school', 'student','subjects','exam'));
+        return view('exam.show', compact('admin', 'student','subjects','exam'));
     }
 
     /**

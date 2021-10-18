@@ -53,13 +53,8 @@ class StudentFeeController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
         $fee = StudentFee::all();
-
-       
-        
-        
-        return view('student.fees_show', compact('admin', 'school','fee'));
+        return view('student.fees_show', compact('admin', 'fee'));
     }
 
  

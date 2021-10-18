@@ -20,10 +20,9 @@ class ClassroomController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
         $student = Student::where('admin_id', $user)->get();
         $classroom = Classroom::where('admin_id', $user)->get();
-        return view('classroom.index', compact('admin', 'school', 'classroom','student'));
+        return view('classroom.index', compact('admin', 'classroom','student'));
        
     }
 
@@ -37,9 +36,9 @@ class ClassroomController extends Controller
         
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+
      
-        return view('classroom.index', compact('admin', 'school', 'classroom'));
+        return view('classroom.index', compact('admin', 'classroom'));
     }
 
     /**
@@ -64,8 +63,8 @@ class ClassroomController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('classroom.show', compact('admin', 'school', 'classroom'));
+        
+        return view('classroom.show', compact('admin','classroom'));
     }
 
     /**
