@@ -20,10 +20,10 @@ class SubjectController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+  
         $subjects = Subject::all();
        
-        return view('subject.index', compact('admin', 'school','subjects','subject'));
+        return view('subject.index', compact('admin','subjects','subject'));
     }
 
     /**
@@ -58,8 +58,8 @@ class SubjectController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('subject.show', compact('admin', 'school','subject'));
+        
+        return view('subject.show', compact('admin','subject'));
     }
 
     /**

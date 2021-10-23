@@ -23,13 +23,11 @@ class FeeController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+       
         $student = Student::all();
         $fees = Fee::where('admin_id', $user)->get();
-        foreach($fees as $fee){
-            $total = $fee->sum('amount');
-        }
-        return view('fee.index', compact('admin', 'school', 'student','fees','total'));
+        $total = $fees->sum('amount');
+        return view('fee.index', compact('admin',  'student','fees','total'));
     }
 
     /**
@@ -39,20 +37,20 @@ class FeeController extends Controller
      */
     public function create()
     {
-       $user = auth()->user()->id;
+        $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+       
       
-        return view('fee.index', compact('admin', 'school', 'student','fees'));
+        return view('fee.index', compact('admin',  'student','fees'));
     }
 
      public function attachfees(Student $student)
     {
        $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
+       
       
-        return view('fee.index', compact('admin', 'school', 'student','fees'));
+        return view('fee.index', compact('admin', 'student','fees'));
     }
 
     /**
@@ -78,8 +76,8 @@ class FeeController extends Controller
     {
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('fee.show', compact('admin', 'school','fee'));
+      
+        return view('fee.show', compact('admin','fee'));
     }
 
     /**

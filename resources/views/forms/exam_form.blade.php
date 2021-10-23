@@ -12,8 +12,8 @@
                 <form action="{{ route('exam.store') }}" method="POST">
                     @csrf
 
-                    <input type="text" name="admin_id" value="{{ auth()->user()->id }}">
-                    <input type="text" name="student_id" value="{{ $student->id }}">
+                    <input type="hidden" name="admin_id" value="{{ auth()->user()->id }}">
+                    <input type="hidden" name="student_id" value="{{ $student->id }}">
                     <div class="form-group row">
                         <div class="col-sm-6 ">
 

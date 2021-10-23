@@ -46,9 +46,7 @@
                                                     <th class="text-center">
                                                         Class Name
                                                     </th>
-                                                    <th class="text-center">
-                                                        # Of Students
-                                                    </th>
+
                                                     <th class="text-center">
                                                         Action
                                                     </th>
@@ -64,11 +62,6 @@
                                                         <td class="text-center">
                                                             {{ $class->classname }}
                                                         </td>
-
-                                                        <td class="text-center">
-                                                            {{ $student->count() }}
-                                                        </td>
-
 
                                                         <td class="text-center">
                                                             <a href="{{ route('classroom.show', $class) }}"
