@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Admin;
+use App\Models\School;
+use App\Models\User;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        $user = auth()->user()->id;
+        $admin = User::with(['schools'])->findOrFail($user);
+        $school = School::with(['user'])->where('admin_id', $user)->first();
+        return view('admin.index', compact('admin','school'));
     }
 }

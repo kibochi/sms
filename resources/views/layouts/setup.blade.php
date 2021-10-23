@@ -23,8 +23,7 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    {{-- <script src="{{ asset('js/template.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script> --}}
+    <script src="{{ asset('js/jq.js') }}"></script>
 
     @stack('scripts')
 </body>

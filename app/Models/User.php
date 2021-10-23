@@ -8,7 +8,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+use App\models\School;
+use App\models\Classroom;
+
+class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -49,6 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function schools(){
         return $this->hasMany(School::class, 'admin_id' ,'id');
+    }
+
+      public function classrooms(){
+        return $this->hasMany(Classroom::class, 'admin_id' ,'id');
     }
 
 }

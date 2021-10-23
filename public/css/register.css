@@ -10,7 +10,7 @@ body {
     font-family: sans-serif;
 }
 
-lines {
+.lines {
     position: absolute;
     top: 0;
     left: 0;
@@ -30,14 +30,6 @@ ul,
 a {
     text-decoration: none !important;
     list-style-type: none !important;
-}
-
-.toast {
-    position: fixed;
-    top: 150px;
-    right: 0;
-    color: black;
-    z-index: 1000;
 }
 
 .text-muted a,
@@ -120,20 +112,6 @@ button[type="submit"]:hover,
     color: #000000;
 }
 
-.remove-image {
-    background: transparent;
-    border: 1px solid #9c1de7;
-    color: #020202;
-    font-weight: 700;
-    transition: color 0.3s, background 0.3s;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.remove-image:hover {
-    background: linear-gradient(to left, rgb(221, 20, 20), rgb(241, 66, 66));
-}
-
 .pr-lg-5 h4 {
     font-weight: 600;
 }
@@ -203,14 +181,14 @@ button[type="submit"]:hover,
 
 .image-upload-wrap {
     margin-top: 5px;
-    border: 4px dashed rgb(156, 29, 231);
+    border: 2px dashed rgb(67, 105, 214);
     position: relative;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
     background-color: #e2e2e2;
-    border: 4px dashed rgb(156, 29, 231);
+    border: 2px dashed rgb(67, 105, 214);
 }
 
 .image-title-wrap {

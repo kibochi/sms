@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
 use App\Models\School;
+use App\Models\Student;
+use App\Models\Subject;
+use App\Models\Fee;
+use App\Models\StudentFee;
+use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,8 +24,14 @@ class AdminController extends Controller
     {   
         $user = auth()->user()->id;
         $admin = User::with(['schools'])->findOrFail($user);
-        $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('admin.index', compact('admin','school'));
+        $student = Student::where('admin_id', $user)->get();
+        $subject = Subject::where('admin_id', $user)->get();
+        $classrooms = Classroom::where('admin_id', $user)->get();
+        $fees = StudentFee::with('student')->get();
+        $schoolfees = Fee::where('admin_id', $user)->get();
+    
+        return view('admin.index', compact('admin','student','classrooms','schoolfees','fees',
+        'subject'));
     }
 
     /**
@@ -53,11 +64,11 @@ class AdminController extends Controller
     public function show(User $admin)
     {
         $user = auth()->user()->id;
-         $school = School::with(['user'])->where('admin_id', $user)->first();
+     
          
          $admin= User::with(['schools'])->where('id', $user)->first();
 
-         return view('admin.show',compact('admin', 'school'));
+         return view('admin.show',compact('admin'));
         
     }
 
@@ -69,9 +80,8 @@ class AdminController extends Controller
      */
     public function edit(User $admin)
     {
-         $user = auth()->user()->id;
-         $school = School::with(['user'])->where('admin_id', $user)->first();
-        return view('admin.edit',compact('admin','school'));
+        
+        return view('admin.edit',compact('admin'));
     }
 
     /**
