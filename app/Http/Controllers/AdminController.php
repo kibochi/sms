@@ -63,9 +63,7 @@ class AdminController extends Controller
      */
     public function show(User $admin)
     {
-        $user = auth()->user()->id;
-     
-         
+         $user = auth()->user()->id;
          $admin= User::with(['schools'])->where('id', $user)->first();
 
          return view('admin.show',compact('admin'));
